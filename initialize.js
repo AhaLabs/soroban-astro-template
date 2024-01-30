@@ -68,7 +68,9 @@ function bind_all() {
 
 function importContract(contract) {
   const filenameNoExt = filenameNoExtension(contract);
-  const outputPath = `${dirname}/src/contracts/${filenameNoExt}.ts`;
+  const outputDir = `${dirname}/src/contracts/`;
+  mkdirSync(outputDir, { recursive: true })
+
   const importContent = `import * as Client from '${filenameNoExt}';\n` +
                         `import { rpcUrl } from './util';\n\n` +
                         `export default new Client.Contract({\n` +
@@ -76,6 +78,7 @@ function importContract(contract) {
                         `  rpcUrl,\n` +
                         `});\n`;
   
+  const outputPath = `${outputDir}/${filenameNoExt}.ts`;
   writeFileSync(outputPath, importContent);
   console.log(`Created import for ${filenameNoExt}`);
 }
