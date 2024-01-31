@@ -2,13 +2,13 @@
 
 A Frontend Template suitable for use with `soroban contract init --frontend-template`, powered by [Astro](https://astro.build/).
 
-# Getting Started
+## Getting Started
 
 - `cp .env.example .env`
 - `npm install`
 - `npm run dev`
 
-# How it works
+## How it works
 
 If you look in [package.json](./package.json), you'll see that the `start` & `dev` scripts first run the [`initialize.js`](./initialize.js) script. This script loops over all contracts in `contracts/*` and, for each:
 
@@ -19,3 +19,36 @@ If you look in [package.json](./package.json), you'll see that the `start` & `de
 
 You're now ready to import these initialized contract clients in your [Astro templates](https://docs.astro.build/en/core-concepts/astro-syntax/) or your [React, Svelte, Vue, Alpine, Lit, and whatever else JS files](https://docs.astro.build/en/core-concepts/framework-components/#official-ui-framework-integrations). You can see an example of this in [index.astro](./src/pages/index.astro).
 
+## Project Structure
+
+This repository uses the recommended structure for a Soroban project with an Astro Frontend:
+
+```text
+.
+├── contracts
+│   └── hello_world
+│       ├── src
+│       │   ├── lib.rs
+│       │   └── test.rs
+│       └── Cargo.toml
+├── packages
+├── public
+│   └── favicon.svg
+├── src
+│   ├── components
+│   │   └── Card.astro
+│   ├── layouts
+│   │   └── Layout.astro
+│   ├── pages
+│   │   └── index.astro
+│   └── env.d.ts
+├── astro.config.mjs
+├── initialize.js
+├── package-lock.json
+├── package.json
+└── tsconfig.json
+```
+
+- New Soroban contracts can be put in `contracts`, each in their own directory. There is already a `hello_world` contract in there to get you started.
+- If you initialized this project with any other example contracts via `--with-example`, those contracts will be in the `contracts` directory as well.
+- Contracts should have their own `Cargo.toml` files that rely on the top-level `Cargo.toml` workspace for their dependencies.
