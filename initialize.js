@@ -81,7 +81,7 @@ function importContract(contract) {
 
   const importContent =
     `import * as Client from '${filenameNoExt}';\n` +
-    `import { rpcUrl } from '../util';\n\n` +
+    `import { rpcUrl } from './util';\n\n` +
     `export default new Client.Contract({\n` +
     `  ...Client.networks.${process.env.SOROBAN_NETWORK},\n` +
     `  rpcUrl,\n` +
