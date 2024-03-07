@@ -2,13 +2,13 @@
 
 A Frontend Template suitable for use with `soroban contract init --frontend-template`, powered by [Astro](https://astro.build/).
 
-# Getting Started
+## Getting Started
 
 - `cp .env.example .env`
 - `npm install`
 - `npm run dev`
 
-# How it works
+## How it works
 
 If you look in [package.json](./package.json), you'll see that the `start` & `dev` scripts first run the [`initialize.js`](./initialize.js) script. This script loops over all contracts in `contracts/*` and, for each:
 
